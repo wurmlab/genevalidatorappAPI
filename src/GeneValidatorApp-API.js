@@ -4,7 +4,7 @@
 // You are required to provide the function the following variables:
 //
 // * Compulsory Variables 
-// *** GeneValidatorApp_url = This the url link to the GeneValidatorApp
+// *** geneValidatorAppUrl = This the url link to the GeneValidatorApp
 //      (e.g. 'genevalidator.sbcs.qmul.ac.uk')
 // *** sequence = This is the sequence(s) that are to be analysed by GeneValidator.
 //      Sequences should be in a single line with no new line characters within the
@@ -20,12 +20,12 @@
 //      you want to run. Each validation must be separated by a comma. Options include: 
 //      "length_cluster, length_rank, duplication, gene_merge, multiple_alignment,
 //      blast_reading_frame, open_reading_frame"
-function send_to_genevalidator(GeneValidatorApp_url, sequence, database, validations) {
-  var GVAppUrl = '';
-  if (GeneValidatorApp_url.slice(-1) === '/') {
-    GVAppUrl = GeneValidatorApp_url +'input';
+function sendToGeneValidator(geneValidatorAppUrl, sequence, database, validations) {
+  var gvAppUrl = '';
+  if (geneValidatorAppUrl.slice(-1) === '/') {
+    gvAppUrl = geneValidatorAppUrl +'input';
   } else {
-    GVAppUrl = GeneValidatorApp_url +'/input';
+    gvAppUrl = geneValidatorAppUrl +'/input';
   }
   var seq  = sequence.replace('\n', '%0D%0A').replace('>', '%3E');
   var vals = sort_out_validations(validations);
@@ -34,7 +34,7 @@ function send_to_genevalidator(GeneValidatorApp_url, sequence, database, validat
   var link = '';
   $.ajax({
     type: 'POST',
-    url: GVAppUrl,
+    url: gvAppUrl,
     data: data,
     async: false,
     success: function(result){
