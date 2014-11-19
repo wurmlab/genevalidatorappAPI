@@ -4,9 +4,10 @@ This is an API for [GeneValidatorApp](http://github.com/IsmailM/GeneValidatorApp
 
 ##Usage
 1) Download GeneValidatorApp-API.min.js (located in the build folder)
+
 2) Add the GeneValidatorApp-API.min.js to your HTML
 
-```
+```html
 <script type="text/javascript" src="GeneValidatorApp-API.min.js"></script>
 ```
 3) Run the `sendToGeneValidator()` function.
@@ -16,20 +17,26 @@ sendToGeneValidator(geneValidatorAppUrl, sequence, database, validations)
 ``` 
 
 ###Function Variables
-####geneValidatorAppUrl
+The `sendToGeneValidator()` function has 3 compulsory arguments and one optional argument.
+
+#####geneValidatorAppUrl
 This the url link to the GeneValidatorApp
+
 <em>Example:</em> `"genevalidator.sbcs.qmul.ac.uk"`
 
-####sequence
+#####sequence
 This is the sequence(s) that are to be analysed by GeneValidator. Sequences should be in a single line with no new line characters within the sequence ('\n'). If an sequence id is present, the id should start with a  forward arrow character ('>') and there must be a new line character between the id and sequence. Muliple Sequences are allowed - there should a new line character between sequences ('\n').
+
 <em>Example:</em> `">seqid1\nTTCTACTCCCCCAAAACACGGCGGGACGTTGAGCAGCCTCTAGTGAACGGTCCCCTGCAT\n>seqid2\nGAGCGGGGTTTCTTCTACTCCCCCAAAACACGGCGGGACGTTGAGCAGCCTCTAGTGAACGGTCCCC"`
 
-####database
+#####database
 This is the name of the chosen database that you wish GeneValidator to use. Possible options can be seen under 'Advanced Parameters' on the GeneValidatorApp.
+
 <em>Example:</em> `"SwissProt"`
 
-####validations (Optional Argument)
+#####validations (Optional Argument)
 This is an string of all the validations that you want to run. Each validation must be separated by a comma.
+
 <em>Example:</em> `"length_cluster, length_rank, duplication, gene_merge, multiple_alignment, blast_reading_frame, open_reading_frame"`
 
 
@@ -55,7 +62,7 @@ function send(){
 
 One could then add this custom wrapper function to the HTML as shown below:
 
-```
+```html
 <button type="button" onclick="send()" class="btn btn-primary">Click here to send</button>
 ```
 
