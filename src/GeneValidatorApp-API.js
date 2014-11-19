@@ -4,7 +4,7 @@
 // You are required to provide the function the following variables:
 //
 // * Compulsory Variables 
-// *** geneValidatorAppUrl = This the url link to the GeneValidatorApp
+// *** genevalidatorAppUrl = This the url link to the GeneValidatorApp
 //      (e.g. 'genevalidator.sbcs.qmul.ac.uk')
 // *** sequence = This is the sequence(s) that are to be analysed by GeneValidator.
 //      Sequences should be in a single line with no new line characters within the
@@ -20,12 +20,12 @@
 //      you want to run. Each validation must be separated by a comma. Options include: 
 //      "length_cluster, length_rank, duplication, gene_merge, multiple_alignment,
 //      blast_reading_frame, open_reading_frame"
-function sendToGeneValidator(geneValidatorAppUrl, sequence, database, validations) {
+function sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations) {
   var gvAppUrl = '';
-  if (geneValidatorAppUrl.slice(-1) === '/') {
-    gvAppUrl = geneValidatorAppUrl +'input';
+  if (genevalidatorAppUrl.slice(-1) === '/') {
+    gvAppUrl = genevalidatorAppUrl +'input';
   } else {
-    gvAppUrl = geneValidatorAppUrl +'/input';
+    gvAppUrl = genevalidatorAppUrl +'/input';
   }
   var seq  = sequence.replace('\n', '%0D%0A').replace('>', '%3E');
   var vals = sort_out_validations(validations);

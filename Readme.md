@@ -13,13 +13,13 @@ This is an API for [GeneValidatorApp](http://github.com/IsmailM/GeneValidatorApp
 3) Run the `sendToGeneValidator()` function.
 
 ```javascript
-sendToGeneValidator(geneValidatorAppUrl, sequence, database, validations)
+sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations)
 ``` 
 
 ###Function Variables
 The `sendToGeneValidator()` function has 3 compulsory arguments and one optional argument.
 
-#####geneValidatorAppUrl
+#####genevalidatorAppUrl
 This the url link to the GeneValidatorApp
 
 <em>Example:</em> `"genevalidator.sbcs.qmul.ac.uk"`
@@ -45,7 +45,7 @@ It is possible to run the `sendToGeneValidator()` method from a wrapper function
 
 ```javascript
 function send(){
-  var geneValidatorAppUrl = "http://genevalidator.sbcs.qmul.ac.uk";
+  var genevalidatorAppUrl = "http://genevalidator.sbcs.qmul.ac.uk";
 
   var sequence = ">gi|514746961|ref|XM_005019748.1| PREDICTED: Anas platyrhynchos insulin (INS), mRNA\nATGGCTCTCTGGATCCGGTCGCTGCCTCTCCTGGCCCTTCTTGCTCTTTCTGGCCCTGGGATCAGCCACGCAGCTGCCAACCAGCACCTCTGTGGCTCCCACTTGGTTGAGGCTCTCTACCTGGTGTGTGGGGAGCGGGGTTTCTTCTACTCCCCCAAAACACGGCGGGACGTTGAGCAGCCTCTAGTGAACGGTCCCCTGCATGGCGAGGTGGGAGAGCTGCCGTTCCAGCATGAGGAATACCAGAAAGTCAAGCGAGGCATCGTTGAGCAATGCTGTGAAAACCCGTGCTCCCTCTACCAACTGGAAAACTACTGCAACTAG\n>gi|514746961|ref|XM_005019748.1|dup PREDICTED: Anas platyrhynchos insulin (INS), mRNA - Contains a duplication\nATGGCTCTCTGGATCCGGTCGCTGCCTCTCCTGGCCCTTCTTGCTCTTTCTGGCCCTGGGATCAGCCACGCAGCTGCCAACCAGCACCTCTGTGGCTCCCACTTGGTTGAGGCTCTCTACCTGGTGTGTGGGGAGCGGGGTTTCTTCTACTCCCCCAAAACACGGCGGGACGTTGAGCAGCCTCTAGTGAACGGTCCCCTGCATGGCGAGGTGGGAGAGCTGCCGTTCCAGCATGAGGAATACCAGACAGCACCTCTGTGGCTCCCACTTGGTTGAGGCTCTCTACCTGGTGTGTGGGGAGCGGGGTTTCTTCTACTCCCCCAAAACACGGCGGGACGTTGAGCAGCCTCTAGTGAACGGTCCCCTGCATGGCGAGGTGGGAGAGCTGCCGTTCCAGCATGAGGAATACCAGAAAGTCAAGCGAGGCATCGTTGAGCAATGCTGTGAAAACCCGTGCTCCCTCTACCAACTGGAAAACTACTGCAACTAG";
 
@@ -53,7 +53,7 @@ function send(){
 
   var validations = "length_cluster, length_rank, duplication, gene_merge, multiple_alignment, blast_reading_frame, open_reading_frame";
 
-  var link = sendToGeneValidator(geneValidatorAppUrl, sequence, database, validations);
+  var link = sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations);
 
   window.open(link, "_blank");
 
