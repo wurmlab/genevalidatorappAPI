@@ -20,27 +20,27 @@ sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations)
 The `sendToGeneValidator()` function has 3 compulsory arguments and one optional argument.
 
 #####genevalidatorAppUrl
-This the url link to the GeneValidatorApp
+This is a variable containing a sting of the URL link to the GeneValidatorApp.
 
 <em>Example:</em> `"genevalidator.sbcs.qmul.ac.uk"`
 
 #####sequence
-This is the sequence(s) that are to be analysed by GeneValidator. Sequences should be in a single line with no new line characters within the sequence ('\n'). If an sequence id is present, the id should start with a  forward arrow character ('>') and there must be a new line character between the id and sequence. Muliple Sequences are allowed - there should a new line character between sequences ('\n').
+This is a variable containing the sequence(s) that are to be analysed by GeneValidator. This should be a single string with new line characters between sequences ('\n'). If an sequence id is present, the id should start with a  forward arrow character ('>') and there must be a new line character ('\n') between the id and sequence.
 
 <em>Example:</em> `">seqid1\nTTCTACTCCCCCAAAACACGGCGGGACGTTGAGCAGCCTCTAGTGAACGGTCCCCTGCAT\n>seqid2\nGAGCGGGGTTTCTTCTACTCCCCCAAAACACGGCGGGACGTTGAGCAGCCTCTAGTGAACGGTCCCC"`
 
 #####database
-This is the name of the chosen database that you wish GeneValidator to use. Possible options can be seen under 'Advanced Parameters' on the GeneValidatorApp.
+This is a variable containing the name of the database that you wish GeneValidator to use. Possible options can be seen under 'Advanced Parameters' on the GeneValidatorApp.
 
 <em>Example:</em> `"SwissProt"`
 
 #####validations (Optional Argument)
-This is an string of all the validations that you want to run. Each validation must be separated by a comma.
+This is a variable that lists all the validations that you want to run. The validation should be provided as a single string, where separate validations are separated by a comma.
 
 <em>Example:</em> `"length_cluster, length_rank, duplication, gene_merge, multiple_alignment, blast_reading_frame, open_reading_frame"`
 
 
-##Examplar Usage
+##Exemplar Usage
 It is possible to run the `sendToGeneValidator()` method from a wrapper function as follows
 
 ```javascript
