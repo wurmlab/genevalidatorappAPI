@@ -21,20 +21,15 @@
 //      "length_cluster, length_rank, duplication, gene_merge, multiple_alignment,
 //      blast_reading_frame, open_reading_frame"
 function sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations) {
-  var gvAppUrl = '';
-  if (genevalidatorAppUrl.slice(-1) === '/') {
-    gvAppUrl = genevalidatorAppUrl +'input';
-  } else {
-    gvAppUrl = genevalidatorAppUrl +'/input';
-  }
+  'use strict';
   var seq  = sequence.replace('\n', '%0D%0A').replace('>', '%3E');
   var vals = sort_out_validations(validations);
   var db   = database;
-  var data = "seq=" + seq + "&" + vals + "database=" + db + "&result_link=yes";
+  var data = 'seq=' + seq + '&' + vals + 'database=' + db + '&result_link=yes';
   var link = '';
   $.ajax({
     type: 'POST',
-    url: gvAppUrl,
+    url: genevalidatorAppUrl,
     data: data,
     async: false,
     success: function(result){
@@ -46,11 +41,13 @@ function sendToGeneValidator(genevalidatorAppUrl, sequence, database, validation
 
 // This is an internal method that converts returns the validations variable in the required format.
 function sort_out_validations(validations){
+  'use strict';
+  var vals = '';
   if (validations === 'all'){
     vals = 'validations%5B%5D=lenc&validations%5B%5D=lenr&validations%5B%5D=dup&validations%5B%5D=merge&validations%5B%5D=align&validations%5B%5D=frame&validations%5B%5D=orf&';
   } else {
     validations = validations.split(',');
-    validations_short_names = {
+    var validations_short_names = {
       'length_cluster': 'lenc',
       'length_rank': 'lenr',
       'duplication': 'dup',
@@ -60,7 +57,7 @@ function sort_out_validations(validations){
       'open_reading_frame': 'orf'
     };
     vals = '';
-    for (i=0; i<validations.length; i++){
+    for (var i = 0; i<validations.length; i++){
       vals += 'validations%5B%5D=' + validations_short_names[validations[i].trim()] + '&';
     }
   }
