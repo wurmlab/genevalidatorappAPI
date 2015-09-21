@@ -103,9 +103,11 @@
             This argument takes three possible arguments.
             <ul>
               <li><code>open_link</code> (default): This opens the GV results in a new tab.</li>
-              <li><code>link_url</code>: This return a link to the GV results.</li>
-              <li><code>json_url</code>: This return a link to the GV results in JSON format.</li>
+              <li><code>results_url*</code>: This return a link to the GV results.</li>
+              <li><code>json_url*</code>: This return a link to the GV results in JSON format.</li>
+              * You may need to encode a promise JS function to ensure the url recieved can be used in further scripts.
             </ul>
+            </p>
           </li>
 
         </ul>
@@ -127,7 +129,7 @@ function send(){
 
   var validations = "length_cluster, length_rank, duplication, gene_merge, multiple_alignment, blast_reading_frame, open_reading_frame";
 
-  var output_type = 'open_link' // Other options include: 'link_url' or 'json_url'
+  var output_type = 'open_link' // Other options include: 'results_url' or 'json_url'
 
   var link = GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, output_type);
 
@@ -156,7 +158,6 @@ function send(){
     <script type="text/javascript">
 //simple method that calls the GV api method
 function send(){
-
   var genevalidatorAppUrl = "http://genevalidator.sbcs.qmul.ac.uk";
 
   var sequence = ">gi|514746961|ref|XM_005019748.1| PREDICTED: Anas platyrhynchos insulin (INS), mRNA\nATGGCTCTCTGGATCCGGTCGCTGCCTCTCCTGGCCCTTCTTGCTCTTTCTGGCCCTGGGATCAGCCACGCAGCTGCCAACCAGCACCTCTGTGGCTCCCACTTGGTTGAGGCTCTCTACCTGGTGTGTGGGGAGCGGGGTTTCTTCTACTCCCCCAAAACACGGCGGGACGTTGAGCAGCCTCTAGTGAACGGTCCCCTGCATGGCGAGGTGGGAGAGCTGCCGTTCCAGCATGAGGAATACCAGAAAGTCAAGCGAGGCATCGTTGAGCAATGCTGTGAAAACCCGTGCTCCCTCTACCAACTGGAAAACTACTGCAACTAG\n>gi|514746961|ref|XM_005019748.1|dup PREDICTED: Anas platyrhynchos insulin (INS), mRNA - Contains a duplication\nATGGCTCTCTGGATCCGGTCGCTGCCTCTCCTGGCCCTTCTTGCTCTTTCTGGCCCTGGGATCAGCCACGCAGCTGCCAACCAGCACCTCTGTGGCTCCCACTTGGTTGAGGCTCTCTACCTGGTGTGTGGGGAGCGGGGTTTCTTCTACTCCCCCAAAACACGGCGGGACGTTGAGCAGCCTCTAGTGAACGGTCCCCTGCATGGCGAGGTGGGAGAGCTGCCGTTCCAGCATGAGGAATACCAGACAGCACCTCTGTGGCTCCCACTTGGTTGAGGCTCTCTACCTGGTGTGTGGGGAGCGGGGTTTCTTCTACTCCCCCAAAACACGGCGGGACGTTGAGCAGCCTCTAGTGAACGGTCCCCTGCATGGCGAGGTGGGAGAGCTGCCGTTCCAGCATGAGGAATACCAGAAAGTCAAGCGAGGCATCGTTGAGCAATGCTGTGAAAACCCGTGCTCCCTCTACCAACTGGAAAACTACTGCAACTAG";
@@ -165,8 +166,7 @@ function send(){
 
   var validations = "length_cluster, length_rank, duplication, gene_merge, multiple_alignment, blast_reading_frame, open_reading_frame";
 
-  var output_type = 'open_link' // Other options include: 'link_url' or 'json_url'
-
+  var output_type = 'open_link' // Other options include: 'results_url' or 'json_url'
   GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, output_type);
 }
     </script>
