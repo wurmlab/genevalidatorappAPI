@@ -1,6 +1,6 @@
 # GeneValidatorApp API
 
-This is an API for [GeneValidatorApp](http://github.com/IsmailM/GeneValidatorApp)
+This is an API for [GeneValidatorApp](http://github.com/wurmlab/GeneValidatorApp)
 
 ##Usage
 1) Download GeneValidatorApp-API.min.js (located in the build folder)
@@ -14,10 +14,10 @@ This is an API for [GeneValidatorApp](http://github.com/IsmailM/GeneValidatorApp
 
 ```javascript
 sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations)
-``` 
+```
 
 ###Function Variables
-The `sendToGeneValidator()` function has 3 compulsory arguments and one optional argument.
+The `sendToGeneValidator()` function has three compulsory arguments and two optional argument.
 
 #####genevalidatorAppUrl
 This is a variable containing a sting of the URL link to the GeneValidatorApp.
@@ -39,6 +39,11 @@ This is a variable that lists all the validations that you want to run. The vali
 
 <em>Example:</em> `"length_cluster, length_rank, duplication, gene_merge, multiple_alignment, blast_reading_frame, open_reading_frame"`
 
+#####output_type (Optional Argument)
+
+  - `open_link` (default): This opens the GV results in a new tab.
+  - `link_url`: This return a link to the GV results.
+  - `json_url`: This return a link to the GV results in JSON format.
 
 ##Exemplar Usage
 It is possible to run the `sendToGeneValidator()` method from a wrapper function as follows
@@ -68,4 +73,4 @@ One could then add this custom wrapper function to the HTML as shown below:
 
 ##Demo
 
-Please see [here](http://ismailm.github.io/GeneValidatorApp-API/) for a working demo (a copy can be found in the demo folder).
+Please see [here](http://wurmlab.github.io/GeneValidatorApp-API/) for a working demo (a copy can be found in the demo folder).
