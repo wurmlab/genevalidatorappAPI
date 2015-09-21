@@ -31,10 +31,8 @@ if (!GV) {
   //      "length_cluster, length_rank, duplication, gene_merge, multiple_alignment,
   //      blast_reading_frame, open_reading_frame"
   GV.sendToGeneValidator = function(genevalidatorAppUrl, sequence, db, validations, result_type) {
-    var seq  = sequence.replace('\r\n', '%0D%0A').replace('\n', '%0D%0A').replace('>', '%3E');
-    var vals = GV.sort_out_validations(validations);
-    var output_type = GV.type_of_output(result_type)
-    var data = 'seq=' + seq + '&' + vals + 'database=' + db + output_type
+    var gvResults = ''
+    var data = GV.setUpData(sequence, validations, db, result_type)
     var promise = $.ajax({
       type: 'POST',
       url: genevalidatorAppUrl,
@@ -46,17 +44,27 @@ if (!GV) {
       promise.done(function(result) {
         console.log(result);
         results_page.location.href = result;
+        gvResults = result
       })
-    } else if ( (result_type == 'link_url') || (result_type == 'json_url') ) {
+    } else if ( (result_type == 'results_url') || (result_type == 'json_url') ) {
       promise.done(function(result) {
         console.log(result);
-        return result;
+        gvResults = result
       })
     }
+    return gvResults
+  }
+
+  GV.setUpData = function(sequence, validations, db, result_type) {
+    var seq  = sequence.replace('\r\n', '%0D%0A').replace('\n', '%0D%0A').replace('>', '%3E');
+    var vals = GV.sortOutValidations(validations);
+    var output_type = GV.type_of_output(result_type)
+    var data = 'seq=' + seq + '&' + vals + 'database=' + db + output_type
+    return data
   }
 
   // This is an internal method that converts returns the validations variable in the required format.
-  GV.sort_out_validations = function(validations){
+  GV.sortOutValidations = function(validations){
     var vals = '';
     if ((validations === 'all') || (validations === undefined)){
       vals = 'validations%5B%5D=lenc&validations%5B%5D=lenr&validations%5B%5D=dup&validations%5B%5D=merge&validations%5B%5D=align&validations%5B%5D=frame&validations%5B%5D=orf&';
@@ -81,10 +89,10 @@ if (!GV) {
 
   GV.type_of_output = function(result_type) {
     var output_type = ''
-    if ((result_type === 'open_link') || (result_type === 'link') || result_type === undefined) {
-      output_type = '&result_link=yes';
-    } else if (result_type === 'json') {
-      output_type = '&json_link=yes';
+    if ((result_type === 'open_link') || (result_type === 'results_url') || result_type === undefined) {
+      output_type = '&results_url=yes';
+    } else if (result_type === 'json_url') {
+      output_type = '&json_url=yes';
     };
     return output_type;
   }
