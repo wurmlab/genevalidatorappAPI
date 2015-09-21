@@ -165,8 +165,9 @@ function send(){
 
   var validations = "length_cluster, length_rank, duplication, gene_merge, multiple_alignment, blast_reading_frame, open_reading_frame";
 
-  GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, 'open_link');
+  var output_type = 'open_link' // Other options include: 'link_url' or 'json_url'
 
+  GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, output_type);
 }
     </script>
   </body>
