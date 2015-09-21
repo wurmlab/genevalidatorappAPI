@@ -2,6 +2,10 @@
 
 This is an API for [GeneValidatorApp](http://github.com/wurmlab/GeneValidatorApp)
 
+## Prerequisites
+- Jquery
+- A running web app instance of [GeneValidatorApp](http://github.com/wurmlab/GeneValidatorApp).
+
 ##Usage
 1) Download GeneValidatorApp-API.min.js (located in the build folder)
 
