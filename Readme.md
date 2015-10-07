@@ -1,5 +1,5 @@
 # GeneValidatorApp API
 
-This is an API for [GeneValidatorApp](http://github.com/wurmlab/GeneValidatorApp)
+This is an API for [GeneValidatorApp](https://github.com/wurmlab/GeneValidatorApp)
 
-Please see [http://wurmlab.github.io/tools/GeneValidatorApp-API/](http://wurmlab.github.io/tools/GeneValidatorApp-API/) for the documentation and a working demo.
+Please see [https://wurmlab.github.io/genevalidatorappAPI/](https://wurmlab.github.io/genevalidatorappAPI/) for the documentation and a working demo.
