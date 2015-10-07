@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GeneValidatorApp-API</title>
+    <title>genevalidatorappAPI</title>
     <link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.1/flatly/bootstrap.min.css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">body {padding-top:105px;}pre {margin-top:10px; margin-bottom: 20px;}pre p {margin: 15px;}.menu_item {line-height: 31px !important;}.normal-font p {font-size: 15px;}.page-header {margin-top: -105px;padding-top: 105px;}
@@ -32,13 +32,13 @@
             <li><a href="#"  class="menu_item">Home</a></li>
             <li><a href="#usage" class="menu_item">Usage</a></li>
             <li><a href="#demo" class="menu_item">Demo</a></li>
-            <li><a href="https://github.com/wurmlab/genevalidator" target="_blank" class="menu_item">GeneValidator</a></li>
+            <li><a href="https://wurmlab.github.io/tools/genevalidator" target="_blank" class="menu_item">GeneValidator</a></li>
             <li><a href="https://github.com/wurmlab/genevalidatorapp" target="_blank" class="menu_item">GeneValidatorApp</a></li>
             <li><a href="https://wurmlab.github.io" target="_blank" class="menu_item">Wurm Lab</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://github.com/wurmlab/GeneValidatorApp-API" target="_blank"><span class="i fa fa-2x fa-github"></span></a></li>
+            <li><a href="https://github.com/wurmlab/genevalidatorappAPI" target="_blank"><span class="i fa fa-2x fa-github"></span></a></li>
           </ul>
 
         </div>
@@ -50,9 +50,9 @@
 
     <div class="jumbotron">
       <h1>GeneValidatorApp API</h1>
-      <p>This is a very simple, easy-to-use API for GeneValidatorApp. It allows you to validates genes within your own JavaScript programs or Web Applications.</p>
+      <p>This is a very simple, easy-to-use API for <a href="https://wurmlab.github.io/tools/genevalidator" target="_blank">GeneValidator</a>. It allows you to validates genes within your own Web Applications or Javascript-supporting programs.</p>
       <p>
-      <a href="https://github.com/wurmlab/GeneValidatorApp-API" target="_blank" class="btn btn-primary btn-lg"><span class="i fa fa-github"></span>&nbsp;&nbsp;See Source</a>&nbsp;&nbsp;
+      <a href="https://github.com/wurmlab/genevalidatorappAPI" target="_blank" class="btn btn-primary btn-lg"><span class="i fa fa-github"></span>&nbsp;&nbsp;See Source</a>&nbsp;&nbsp;
       <button type="button" onclick="send()" class="btn btn-primary btn-lg">See Demo</button>
 
 
@@ -65,16 +65,16 @@
     <div class="jumbotron normal-font">
       <ol>
         <li>Add the GeneValidatorApp-API script to your HTML</li>
-          <pre class="prettyprint"><p>&lt;script type="text/javascript" src="GeneValidatorApp-API.min.js"&gt;&lt;/script&gt;</p></pre>
+          <pre class="prettyprint"><p>&lt;script type="text/javascript" src="genevalidatorapp-API.min.js"&gt;&lt;/script&gt;</p></pre>
 
         <li>Run the <code>GV.sendToGeneValidator()</code> function as follows:</li>
-        <pre class="prettyprint"><p>GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, output_type)</p></pre>
-        <p>The <code>GV.sendToGeneValidator()</code> utilises the following variables:</p>
+        <pre class="prettyprint"><p>GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, outputType)</p></pre>
+        <p>The <code>GV.sendToGeneValidator()</code> function has the following arguments:</p>
         <ul>
           <li>
             <p><strong>genevalidatorAppUrl</strong><br>
              This the url link to the GeneValidatorApp<br>
-            <em><strong>Example:</strong> "genevalidator.sbcs.qmul.ac.uk"</em>
+            <em><strong>Example:</strong> "http://genevalidator.sbcs.qmul.ac.uk"</em>
             </p>
           </li>
 
@@ -99,17 +99,30 @@
           </li>
 
           <li>
-            <p><strong>output_type (Optional)</strong><br>
-            This argument takes three possible arguments.
-            <ul>
-              <li><code>open_link</code> (default): This opens the GV results in a new tab.</li>
-              <li><code>results_url*</code>: This return a link to the GV results.</li>
-              <li><code>json_url*</code>: This return a link to the GV results in JSON format.</li>
-              * You may need to encode a promise JS function to ensure the url recieved can be used in further scripts.
-            </ul>
+            <p><strong>outputType (Optional)</strong><br>
+              It is also possible to specify the output type:
+              <ul>
+                <li><code>open_link</code> (default): This opens the GV results in a new tab. Note: when running the <code>GV.sendToGeneValidator()</code> function asynchronously, the new opened tab will be blocked by the browser. In such a case use <code>results_url</code> instead and manually open the link outside the asynchronous code.</li>
+                <li><code>results_url</code>*: This return a promise with a link to the GV results.</li>
+                <li><code>json_url</code>*: This return a promise with a link to the GV results in JSON format.</li>
+              <br>
+                <strong>Note:</strong> Since the <code>results_url</code> and the <code>json_url</code> arguments return a promise, it is necessary to update your scripts as follows:
+              </ul>
             </p>
+<pre class="prettyprint">
+<p>
+function send() {
+  var loadingUrl = genevalidatorAppUrl + '/GeneValidator/loading.html'
+  var resultsPage = window.open(loadingUrl, '_blank');
+  ...
+  var gvRun = GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, outputType)
+  gvRun.then( function(url) {
+    resultsPage.location.href = url
+  })
+}
+</p>
+</pre>
           </li>
-
         </ul>
       </ol>
     </div>
@@ -129,9 +142,18 @@ function send(){
 
   var validations = "length_cluster, length_rank, duplication, gene_merge, multiple_alignment, blast_reading_frame, open_reading_frame";
 
-  var output_type = 'open_link' // Other options include: 'results_url' or 'json_url'
+  var outputType = 'open_link' // Other options include: 'results_url' or 'json_url'
 
-  var link = GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, output_type);
+  var GvRun = GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, outputType);
+
+  // // when outputType is equal to 'results_url' or 'json_url'
+  //
+  // var loadingUrl = genevalidatorAppUrl + '/GeneValidator/loading.html'
+  // var resultsPage = window.open(loadingUrl, '_blank');
+  //
+  // GvRun.then( function(url) {
+  //  resultsPage.location.href = url
+  // })
 
 }
 </p></pre>
@@ -145,7 +167,6 @@ function send(){
     </div>
   </div>
 
-
     <!-- jQuery -->
     <script src="http://code.jquery.com/jquery.js"></script>
     <!-- Bootstrap JavaScript -->
@@ -153,7 +174,7 @@ function send(){
     <!-- Prettify (for styling the code in this demo) -->
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <!-- GeneValidatorApp-API Javascript -->
-    <script type="text/javascript" src="../build/GeneValidatorApp-API.min.js"></script>
+    <script type="text/javascript" src="../build/genevalidatorappAPI.min.js"></script>
     <!-- Custom Method to run the demo -->
     <script type="text/javascript">
 //simple method that calls the GV api method
@@ -166,8 +187,8 @@ function send(){
 
   var validations = "length_cluster, length_rank, duplication, gene_merge, multiple_alignment, blast_reading_frame, open_reading_frame";
 
-  var output_type = 'open_link' // Other options include: 'results_url' or 'json_url'
-  GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, output_type);
+  var outputType = 'open_link'
+  GV.sendToGeneValidator(genevalidatorAppUrl, sequence, database, validations, outputType);
 }
     </script>
   </body>
