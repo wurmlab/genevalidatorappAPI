@@ -10,7 +10,6 @@ module.exports = function(grunt) {
                 preserveComments: false,
                 mangle: {
                     sort: true,
-                    toplevel: true
                 },
                 sourceMap: false,
                 compress: {
