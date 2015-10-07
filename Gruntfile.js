@@ -4,32 +4,37 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      build: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
-      }
-    },
-    jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js'],
-      options: {
-        globals: {
-          jQuery: true,
-          console: true,
-          module: true,
-          document: true
-        }
-      }
+        dist: {
+            options: {
+                banner: '/*! GeneValidator API <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+                preserveComments: false,
+                mangle: {
+                    sort: true,
+                    toplevel: true
+                },
+                sourceMap: false,
+                compress: {
+                    sequences: true,
+                    dead_code: true,
+                    conditionals: true,
+                    booleans: true,
+                    unused: true,
+                    if_return: true,
+                    join_vars: true,
+                    drop_console: false
+                }
+            },
+            files: {
+                'build/genevalidatorappAPI.min.js': ['src/genevalidatorappAPI.js']
+            },
+        },
     }
   });
 
   // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'uglify']);
+  grunt.registerTask('default', ['uglify']);
 
 };
